@@ -2,63 +2,54 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package com.mycompany.pa2al; //editas con el nombre de tu proyecto XD jaj salu2
+package com.mycompany.pa2al;
 
 public class Pa2al {
 
-   
-    static String[] pacientes = {"Ana", "Luis", "Marta", "Pedro", "Jose"};
-    static String[] examenes  = {"Glucosa", "Colesterol", "Presion", "Trigliceridos"};
+    static String[] pacientes = { "Ana", "Luis", "Marta", "Pedro", "Jose" };
+    static String[] examenes = { "Glucosa", "Colesterol", "Presion", "Trigliceridos" };
 
-  
     static int[][] resultados = {
-            { 95, 180, 120, 140},
-            {110, 210, 135, 160}, 
-            {130, 250, 145, 190},
-            {100, 190, 125, 150}, 
-            { 90, 170, 118, 135} 
+            { 95, 180, 120, 140 },
+            { 110, 210, 135, 160 },
+            { 130, 250, 145, 190 },
+            { 100, 190, 125, 150 },
+            { 90, 170, 118, 135 }
     };
 
     public static void main(String[] args) {
-       
-        mostrarTabla();   
 
-       
+        mostrarTabla();
+
         String nombreBuscado = "Ana";
         busquedaPorPaciente(nombreBuscado);
 
-        
         String examenBuscado = "Glucosa";
         busquedaPorExamen(examenBuscado);
 
-       
         String pacienteModificar = "Marta";
         String examenModificar = "Glucosa";
         int nuevoValor = 115;
         modificar(pacienteModificar, examenModificar, nuevoValor);
 
-        
         String nuevoPaciente = "Carla";
-        int[] nuevosResultados = {105, 200, 128, 155};
+        int[] nuevosResultados = { 105, 200, 128, 155 };
         insertar(nuevoPaciente, nuevosResultados);
-
 
         String pacienteEliminar = "Pedro";
         eliminar(pacienteEliminar);
     }
 
-  
     static void mostrarTabla() {
-        int wNombre = 12;   
-        int wDato   = 13;   
-        int gap     = 2;    
+        int wNombre = 12;
+        int wDato = 13;
+        int gap = 2;
 
-        
         System.out.printf("%-" + wNombre + "s", "Paciente");
-        for (String e : examenes) System.out.printf("%" + (wDato + gap) + "s", e);
+        for (String e : examenes)
+            System.out.printf("%" + (wDato + gap) + "s", e);
         System.out.println();
 
-       
         for (int i = 0; i < pacientes.length; i++) {
             System.out.printf("%-" + wNombre + "s", pacientes[i]);
             for (int j = 0; j < examenes.length; j++) {
@@ -68,7 +59,6 @@ public class Pa2al {
         }
     }
 
-    
     static void busquedaPorPaciente(String nombre) {
         System.out.println("\nBUSQUEDA POR PACIENTE");
         boolean encontrado = false;
@@ -88,7 +78,6 @@ public class Pa2al {
             System.out.println("Paciente no encontrado.");
     }
 
-   
     static void busquedaPorExamen(String examen) {
         System.out.println("\nBUSQUEDA POR EXAMEN");
         int col = -1;
@@ -112,7 +101,6 @@ public class Pa2al {
         }
     }
 
-   
     static void modificar(String paciente, String examen, int nuevoValor) {
         System.out.println("\nMODIFICAR RESULTADO");
         int fila = -1, col = -1;
@@ -143,7 +131,6 @@ public class Pa2al {
         mostrarTabla();
     }
 
-
     static void insertar(String nuevoPaciente, int[] nuevosResultados) {
         System.out.println("\nINSERTAR NUEVO PACIENTE");
 
@@ -152,7 +139,6 @@ public class Pa2al {
             nuevosPacientes[i] = pacientes[i];
         }
         nuevosPacientes[pacientes.length] = nuevoPaciente;
-
 
         int[][] nuevosResultadosMatriz = new int[resultados.length + 1][examenes.length];
         for (int i = 0; i < resultados.length; i++) {
@@ -172,12 +158,10 @@ public class Pa2al {
         mostrarTabla();
     }
 
- 
     static void eliminar(String pacienteEliminar) {
         System.out.println("\nELIMINAR PACIENTE");
         int indice = -1;
 
-       
         for (int i = 0; i < pacientes.length; i++) {
             if (pacientes[i].equalsIgnoreCase(pacienteEliminar)) {
                 indice = i;
@@ -190,7 +174,6 @@ public class Pa2al {
             return;
         }
 
-        
         String[] nuevosPacientes = new String[pacientes.length - 1];
         for (int i = 0, k = 0; i < pacientes.length; i++) {
             if (i != indice) {
@@ -199,7 +182,6 @@ public class Pa2al {
             }
         }
 
-        
         int[][] nuevosResultados = new int[resultados.length - 1][examenes.length];
         for (int i = 0, k = 0; i < resultados.length; i++) {
             if (i != indice) {
@@ -210,7 +192,6 @@ public class Pa2al {
             }
         }
 
-        
         pacientes = nuevosPacientes;
         resultados = nuevosResultados;
 
